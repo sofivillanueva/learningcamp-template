@@ -1,0 +1,7 @@
+<% if content.present? %>
+  <%= link_to @url, class: "#{@html_class}", data: data_attributes do %>
+    <%= content %>
+  <% end %>
+<% else %>
+  <%= link_to @text, @url, class: "#{@html_class}", data: data_attributes %>
+<% end %>

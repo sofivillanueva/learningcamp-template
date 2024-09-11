@@ -1,0 +1,24 @@
+<% present(user, UserPresenter) do |user_presenter| %>
+  <%= rs_form_with model: user, remote: true, class: "flex h-full flex-col divide-y divide-neutral-200 bg-white shadow-xl" do |f| %>
+    <div class="h-0 flex-1 overflow-y-auto">
+      <div class="flex gap-4 m-4">
+        <%= f.field :first_name, label: t('views.users.first_name'), autocomplete: 'first_name', required: true, as: :text %>
+        <%= f.field :last_name, label: t('views.users.last_name'), autocomplete: 'last_name', required: true, as: :text %>
+      </div>
+      <div class="m-4" >
+        <%= f.field :email, label: t('views.users.email'), autocomplete: 'email', required: true, as: :email %>
+      </div>
+      <div class="m-4">
+        <%= f.field :preferences_enabled, label: t('views.users.preferences_enabled'), required: true, as: :text %>
+      </div>
+      <div class="flex flex-shrink-0 justify-end px-4 py-4 gap-4 items-center">
+        <div>
+          <%= render RS::LinkButton::Component.new(url: users_path, text: t('views.users.cancel'), variant: :outline, target: '_top') %>
+        </div>
+        <div>
+          <%= f.submit text: submit_button_text %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,19 @@
+<div class="px-4 sm:px-6 lg:px-8">
+  <%= info %>
+  <div class="mt-8">
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <%= search %>
+        <table class="min-w-full divide-y divide-neutral-300">
+          <%= header %>
+          <tbody class="bg-white">
+            <% rows.each do |row| %>
+              <%= row %>
+            <% end %>
+          </tbody>
+        </table>
+        <%= pagination %>
+      </div>
+    </div>
+  </div>
+</div>

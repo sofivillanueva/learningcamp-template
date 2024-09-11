@@ -1,0 +1,80 @@
+# frozen_string_literal: true
+
+<% module_namespacing do -%>
+class <%= controller_class_name %>Controller < ApplicationController
+  def index
+    @<%= plural_table_name %> = search_query
+
+    @pagy, @records = pagy(@<%= plural_table_name %>)
+  end
+
+  def show
+    @<%= singular_table_name %> = <%= orm_class.find(class_name, 'params[:id]') %>
+  end
+
+  def new
+    @<%= singular_table_name %> = <%= orm_class.build(class_name) %>
+  end
+
+  def edit
+    @<%= singular_table_name %> = <%= orm_class.find(class_name, 'params[:id]') %>
+  end
+
+  def create
+    @<%= singular_table_name %> = <%= orm_class.build(class_name, "#{singular_table_name}_params") %>
+
+    if @<%= orm_instance.save %>
+      redirect_to <%= redirect_resource_name %>, notice: <%= %("#{human_name} was successfully created.") %>
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    @<%= singular_table_name %> = <%= orm_class.find(class_name, 'params[:id]') %>
+
+    if @<%= orm_instance.update("#{singular_table_name}_params") %>
+      redirect_to <%= redirect_resource_name %>, notice: <%= %("#{human_name} was successfully updated.") %>, status: :see_other
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @<%= singular_table_name %> = <%= orm_class.find(class_name, 'params[:id]') %>
+
+    @<%= orm_instance.destroy %>
+    redirect_to <%= index_helper %>_url, notice: <%= %("#{human_name} was successfully destroyed.") %>, status: :see_other
+  end
+
+  private
+
+  # Only allow a list of trusted parameters through.
+  def <%= "#{singular_table_name}_params" %>
+    <%- if attributes_names.empty? -%>
+    params.fetch(:<%= singular_table_name %>, {})
+    <%- else -%>
+    params.require(:<%= singular_table_name %>).permit(<%= permitted_params %>)
+    <%- end -%>
+  end
+
+  def searchable_columns
+    <%= attributes
+      .select { |attribute| attribute.type == :string }
+      .map { |attribute| attribute.column_name } %>
+  end
+
+  def search_query
+    query = params[:query]
+    return <%= orm_class.all(class_name) %> if query.blank?
+
+    relation = <%= class_name %>.none
+
+    searchable_columns.each do |column|
+      relation = relation.or(<%= class_name %>.where("#{column} ILIKE ?", "%#{query}%"))
+    end
+
+    relation
+  end
+end
+<% end -%>

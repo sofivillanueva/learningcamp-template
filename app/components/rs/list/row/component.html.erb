@@ -1,0 +1,42 @@
+<tr class="even:bg-neutral-50">
+  <% row_values.each_with_index do |row_value, index| %>
+    <td class="<%= index.zero? ? 'pl-4 pr-3 font-medium text-neutral-900 sm:pl-3' : 'px-3 text-neutral-500' %> whitespace-nowrap text-sm py-4">
+      <% if row_value[:label].present? %>
+        <%= content_tag :span, row_value[:value], class: "inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset #{label_class_color(row_value[:label])}" %>
+      <% elsif row_value[:image] %>
+        <div class="flex items-center">
+          <div class="h-10 w-10 flex-shrink-0">
+            <% if row_value[:image_src].present? %>
+              <span class="inline-block h-10 w-10 overflow-hidden rounded-full bg-neutral-100">
+                <img class="h-full w-full rounded-full" src=<%= row_value[:image_src] %> alt="">
+              </span>
+            <% else %>
+              <%= inline_svg_tag('icons/recipe.svg') %>
+            <% end %>
+          </div>
+          <div class="ml-4">
+            <div class="font-medium text-neutral-900"><%= row_value[:value] %></div>
+          </div>
+        </div>
+      <% else %>
+        <%= row_value[:value] %>
+      <% end %>
+    </td>
+  <% end %>
+
+  <% if actions.any? %>
+    <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
+      <% actions.select { |action| action[:url].present? }.each_with_index do |action, index| %>
+        <%= '|' if index > 0 %>
+        <%= render RS::Link::Component.new(
+              url: action[:url],
+              text: t("components.rs.list.row.#{action[:name]}"),
+              method: action[:method],
+              target: action[:target],
+              confirmation: action[:confirmation],
+              color: 'neutral'
+            ) %>
+      <% end %>
+    </td>
+  <% end %>
+</tr>

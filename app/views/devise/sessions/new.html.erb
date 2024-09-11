@@ -1,0 +1,25 @@
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="mx-auto w-full max-w-md">
+    <div class="mx-auto text-center w-16 ">
+      <%= render RS::Logo::Component.new(src: 'icons/mark_dark.svg', alt: 'Your Company') %>
+    </div>
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-neutral-900"><%= t('.sign_in') %></h2>
+  </div>
+  <div class="mt-10 mx-auto w-full max-w-md">
+    <%= rs_form_with model: resource, url: new_user_session_path, local: true, class: "mt-8 space-y-6" do |f| %>
+      <%= f.field :email, label: t('.email_address'), autocomplete: 'email', required: true, as: :email %>
+      <%= f.field :password, label: t('.password'), autocomplete: 'current-password', required: true, as: :password %>
+      <div class="flex">
+        <div class="flex-1">
+          <%= f.checkbox id: 'remember', name: 'remember', label: t('.remember_me') %>
+        </div>
+        <div class="font-semibold">
+          <%= render RS::Link::Component.new(url: new_user_password_path, text: t('.forgot_password')) %>
+        </div>
+      </div>
+      <div class="flex justify-center">
+        <%= f.submit text: t('.sign_in_button') %>
+      </div>
+    <% end %>
+  </div>
+</div>

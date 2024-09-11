@@ -1,0 +1,7 @@
+<%= form_with url: url, method: :get, class: "relative flex flex-1" do |f| %>
+  <label for="search-field" class="sr-only"><%= t("components.rs.topbar.search") %></label>
+  <span class="absolute top-1/2 left-5 -translate-x-1/2 -translate-y-1/2" >
+    <%= inline_svg_tag('icons/search.svg') %>
+  </span>
+  <%= render RS::Input::Text::Component.new(name: "query", placeholder: "Search", with_left_icon: true) %>
+<% end %>

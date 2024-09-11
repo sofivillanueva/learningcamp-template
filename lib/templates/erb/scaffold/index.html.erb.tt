@@ -1,0 +1,34 @@
+<%%= render ::RS::List::Component.new do |component| %>
+  <%%= component.with_info(
+    title: '<%= human_name.pluralize %>',
+    description: 'A list of all the <%= human_name.pluralize %>',
+    url: <%= new_helper(type: :path) %>,
+    text: 'New <%= human_name.downcase %>',
+    target: 'panel'
+  ) %>
+  <%%= component.with_search(url: <%= index_helper(type: :path) %>) %>
+  <%%= component.with_header(column_names: <%= attributes.map(&:human_name) %>) %>
+  <%% @records.each do |<%= singular_table_name %>| %>
+    <%%= component.with_row(
+          row_values: [
+<% attributes.each do |attribute| -%>
+             { value: <%= singular_table_name %>.<%= attribute.column_name %> },
+<% end -%>
+          ],
+          actions: [
+            { name: 'edit', url: <%= edit_helper(singular_table_name, type: :path) %>, target: 'panel' },
+            { name: 'remove', url: <%= show_helper(singular_table_name, type: :path) %>, method: :delete }
+          ]
+    ) %>
+  <%% end %>
+
+  <%%= component.with_pagination(
+    next_url: pagy_url_for(@pagy, @pagy.next),
+    previous_url: pagy_url_for(@pagy, @pagy.prev),
+    to: @pagy.to,
+    from: @pagy.from,
+    count: @pagy.count,
+    series_with_url: series_with_url(@pagy),
+    current_page: @pagy.page)
+  %>
+<%% end %>

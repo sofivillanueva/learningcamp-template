@@ -1,0 +1,33 @@
+<%= rs_form_with model: preference, remote: true, class: "flex h-full flex-col divide-y divide-neutral-200 bg-white shadow-xl" do |f| %>
+  <% if preference.errors.any? %>
+    <div class="m-4">
+      <div id="error-message" class="text-error-500 mt-2">
+        <ul>
+          <% preference.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="h-0 flex-1 overflow-y-auto">
+    <div class="m-4">
+      <%= f.field :name, label: t('views.preferences.name'), autocomplete: 'name', required: true, as: :text %>
+    </div>
+    <div class="m-4" >
+      <%= f.field :description, label: t('views.preferences.description'), autocomplete: 'description', required: true, as: :text %>
+    </div>
+    <div class="m-4">
+      <%= f.checkbox id: 'restriction', name: 'preference[restriction]', label: t('views.preferences.restriction'), checked: false %>
+    </div>
+    <div class="flex flex-shrink-0 justify-end px-4 py-4 gap-4 items-center">
+      <div>
+        <%= render RS::LinkButton::Component.new(url: preferences_path, text: t('views.preferences.cancel'), variant: :outline, target: '_top') %>
+      </div>
+      <div>
+        <%= f.submit text: submit_button_text %>
+      </div>
+    </div>
+  </div>
+<% end %>

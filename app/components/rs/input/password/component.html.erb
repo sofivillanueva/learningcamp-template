@@ -1,0 +1,7 @@
+<div data-controller="<%= controller %>">
+  <%= render_parent %>
+  <span id='password-reveal-button' class="absolute top-0 pb-1 right-0 flex items-center pr-3 pt-1 text-neutral-400" data-action="click-><%= @controller %>#passwordVisibility">
+    <%= inline_svg_tag('icons/eye.svg', class: 'w-6 h-6', data: {"#{controller}-target": 'icon'}) %>
+    <%= inline_svg_tag('icons/eye-slash.svg', class: 'w-6 h-6 hidden', data: {"#{controller}-target": 'icon'}) %>
+  </span>
+</div>

@@ -1,0 +1,12 @@
+<ul role="list" class="space-y-5">
+  <% @items.each do |item| %>
+    <li>
+      <a href="<%= item[:link] %>" class="<%= highlight_link(item) %> text-white group flex gap-x-3 rounded-md px-3 p-2 text-sm leading-6 font-semibold">
+        <%= inline_svg_tag(item[:icon], class: "h-6 w-6 shrink-0 text-white") %>
+        <div class="lg:hidden">
+          <%= item[:name] %>
+        </div>
+      </a>
+    </li>
+  <% end %>
+</ul>

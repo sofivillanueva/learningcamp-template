@@ -1,0 +1,26 @@
+<div class="bg-primary-600 px-4 py-6 sm:px-6">
+  <div class="flex items-center justify-between">
+    <h2 class="text-base font-semibold leading-6 text-white" id="slide-over-title"><%= I18n.t('views.preferences.show_preference') %></h2>
+    <div class="flex items-center">
+      <%= render RS::Link::Component.new(url: preferences_path, target: '_top') do %>
+        <span class="relative rounded-md text-white hover:text-neutral-200 focus:outline-none focus:ring-2 focus:ring-white">
+          <span class="absolute -inset-2.5"></span>
+          <span class="sr-only">Close</span>
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </span>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= rs_form_with model: @preference, remote: true, class: "flex h-full flex-col divide-y divide-neutral-200 bg-white shadow-xl", html: { readonly: true } do |f| %>
+  <div class="h-0 flex-1 overflow-y-auto">
+    <div class="flex gap-4 m-4">
+      <%= f.field :name, label: t('views.preferences.name'), as: :text, disabled: true %>
+      <%= f.field :description, label: t('views.preferences.description'), as: :text, disabled: true %>
+      <%= f.field :restriction, label: t('views.preferences.restriction'), as: :text, disabled: true %>
+    </div>
+    </div>
+<% end %>

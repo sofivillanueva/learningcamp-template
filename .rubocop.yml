@@ -1,0 +1,193 @@
+inherit_from:
+  - .rubocop_todo.yml
+
+inherit_mode:
+  merge:
+    - Exclude
+
+require:
+  - rubocop-capybara
+  - rubocop-factory_bot
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rake
+  - rubocop-rspec
+  - rubocop-rspec_rails
+  - 'test_prof/rubocop'
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - bin/bundle
+    - bin/yarn
+    - config/initializers/pagy.rb
+    - config/initializers/strong_migrations.rb
+    - db/schema.rb
+    - node_modules/**/*
+
+Layout/ClassStructure:
+  Enabled: true
+
+Layout/LineLength:
+  Exclude:
+    - db/**/*
+
+Layout/SpaceBeforeFirstArg:
+  Exclude:
+    - app/views/api/**/**/*
+
+Lint/AmbiguousBlockAssociation:
+  AllowedMethods: change
+
+Lint/BinaryOperatorWithIdenticalOperands:
+  Enabled: false
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: false
+
+Lint/RaiseException:
+  Enabled: false
+
+Lint/UselessAssignment:
+  Exclude:
+    - app/services/recipe_generator_service.rb
+
+Metrics/AbcSize:
+  Max: 15
+  Exclude:
+    - db/**/*
+    - app/controllers/recipes_controller.rb
+
+Metrics/BlockLength:
+  Exclude:
+    - app/admin/**/*
+    - config/**/*
+    - spec/**/*
+
+Metrics/BlockNesting:
+  Max: 4
+
+Metrics/ClassLength:
+  Max: 200
+
+Metrics/CyclomaticComplexity:
+  Max: 6
+
+Metrics/MethodLength:
+  Max: 24
+  Exclude:
+    - spec/components/previews/rs/list/component_preview.rb
+
+Metrics/ModuleLength:
+  Max: 200
+
+Metrics/ParameterLists:
+  Exclude:
+    - app/components/**/*
+    - spec/components/previews/rs/list/pagination/component_preview.rb
+
+Metrics/PerceivedComplexity:
+  Max: 12
+
+Naming/RescuedExceptionsVariableName:
+  Enabled: false
+
+Rails/FilePath:
+  Enabled: false
+
+Rails/FindEach:
+  Exclude:
+    - app/forms/user_form.rb
+
+Rails/SaveBang:
+  Enabled: true
+
+Rails/SkipsModelValidations:
+  Enabled: true
+
+RSpec/AggregateExamples:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+Style/ArrayCoercion:
+  Enabled: true
+
+Style/BlockDelimiters:
+  EnforcedStyle: braces_for_chaining
+
+Style/Documentation:
+  Enabled: false
+
+Style/ExpandPathArguments:
+  Enabled: false
+
+Style/GlobalStdStream:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: false
+
+Style/HashLikeCase:
+  MinBranchesCount: 4
+
+Style/HashTransformKeys:
+  Enabled: false
+
+Style/HashTransformValues:
+  Enabled: false
+
+Style/ModuleFunction:
+  Enabled: false
+
+Style/MultilineBlockChain:
+  Enabled: false
+
+Style/RedundantAssignment:
+  Exclude:
+    - app/services/recipe_generator_service.rb
+
+Style/RedundantFetchBlock:
+  Enabled: false
+
+Style/RedundantFileExtensionInRequire:
+  Enabled: false
+
+Style/RedundantRegexpCharacterClass:
+  Enabled: false
+
+Style/ReturnNil:
+  Enabled: true
+
+Style/SlicingWithRange:
+  Enabled: false
+
+Style/StringConcatenation:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/Dialect:
+  Enabled:
+    - feature
+    - scenario
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+FactoryBot/ExcessiveCreateList:
+  Enabled: false

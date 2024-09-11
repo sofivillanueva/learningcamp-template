@@ -1,0 +1,9 @@
+<div data-controller="rs--input-group--component">
+  <%= label if label? %>
+  <div class="relative mt-1 rounded-md shadow-sm">
+    <%= field %>
+  </div>
+  <% if @error.present? %>
+    <p id="error-message" class="text-error-400 mt-2"><%= @error %></p>
+  <% end %>
+</div>

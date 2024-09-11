@@ -1,0 +1,3 @@
+<% flash.each do |key, message| %>
+  <%= render(RS::Notification::Component.new(key: key, message: message)) %>
+<% end %>

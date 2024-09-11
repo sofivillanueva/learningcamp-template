@@ -1,0 +1,10 @@
+<div class="fixed z-50 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true" data-controller="<%= controller %>" data-<%= controller %>-target="modal">
+  <div class="fixed inset-0 bg-neutral-500 bg-opacity-75 transition-opacity" data-action="click-><%= controller %>#close"></div>
+  <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+    <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+      <div class="pointer-events-auto max-w-md" data-<%= controller %>-target="body">
+        <%= body %>
+      </div>
+    </div>
+  </div>
+</div>

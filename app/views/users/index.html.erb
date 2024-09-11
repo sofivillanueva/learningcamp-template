@@ -1,0 +1,35 @@
+<%= render ::RS::List::Component.new do |component| %>
+  <%= component.with_info(
+    title: t('views.users.title'),
+    description: t('views.users.show.title'),
+    url: new_user_path,
+    text: t('views.users.new_user'),
+    target: 'panel'
+  ) %>
+
+  <%= component.with_header(column_names: t('views.users.columns')) %>
+
+  <% @records.all.each do |user| %>
+    <%= component.with_row(
+      row_values: [
+        { value: user.full_name, image: true, image_src: '' },
+                { value: user.email }
+              ],
+              actions: [
+                { name: 'show', url: user_path(user), target: 'panel' },
+                { name: 'edit', url: edit_user_path(id: user.id), target: 'panel' },
+                { name: 'remove', url: user_path(user), method: :delete, confirmation: t('views.users.delete_confirmation') }
+              ]
+    ) %>
+  <% end %>
+
+  <%= component.with_pagination(
+    next_url: pagy_url_for(@pagy, @pagy.next),
+    previous_url: pagy_url_for(@pagy, @pagy.prev),
+    to: @pagy.to,
+    from: @pagy.from,
+    count: @pagy.count,
+    series_with_url: series_with_url(@pagy),
+    current_page: @pagy.page)
+  %>
+<% end %>

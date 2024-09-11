@@ -1,0 +1,17 @@
+<%%= rs_form_with(model: <%= model_resource_name %>, remote: true, class: 'flex h-full flex-col divide-y divide-neutral-200 bg-white shadow-xl') do |f| %>
+  <div class="h-0 flex-1 overflow-y-auto">
+<% attributes.each do |attribute| -%>
+    <div class="m-4">
+      <%%= f.field :<%= attribute.column_name %>, label: "<%= attribute.column_name.humanize %>", as: :<%= RS::FormBuilder.detect_field(attribute) %> %>
+    </div>
+<% end %>
+    <div class="flex flex-shrink-0 justify-end px-4 py-4 gap-4 items-center">
+      <div>
+        <%%= render RS::LinkButton::Component.new(url: <%= index_helper(type: :path) %>, text: 'Cancel', variant: :outline, target: '_top') %>
+      </div>
+      <div>
+        <%%= f.submit text: 'Submit' %>
+      </div>
+    </div>
+  </div>
+<%% end %>

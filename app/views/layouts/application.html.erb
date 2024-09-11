@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html class="h-full">
+  <head>
+    <title><%= t('home.title') %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="turbo-refresh-method" content="morph">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  </head>
+  <body class="h-full bg-white">
+    <% if user_signed_in? %>
+      <%= render RS::Sidebar::Component.new do |component| %>
+        <%= component.with_section(items: [
+          { icon: 'icons/home.svg', name: t("layouts.application.dashboard"), link: root_path },
+          { icon: 'icons/users.svg', name: t("layouts.application.users"), link: users_path },
+          { icon: 'icons/preference.svg', name: t("layouts.application.preferences"), link: preferences_path },
+          { icon: 'icons/recipes.svg', name: t("layouts.application.recipes"), link: recipes_path }
+        ].compact_blank) %>
+      <% end %>
+      <%= render RS::Topbar::Component.new(user_id: current_user.id, first_name: current_user.first_name, last_name: current_user.last_name) %>
+      <main class="lg:pl-20 py-6 bg-neutral-100 h-[calc(100vh-64px)]">
+        <div class="px-4 sm:px-6 lg:px-8 bg-neutral-100">
+          <%= render partial: 'layouts/messages' %>
+          <%= yield %>
+          <%= render RS::Panel::Component.new do |panel| %>
+            <% panel.with_body do %>
+              <%= turbo_frame_tag "panel" %>
+            <% end %>
+          <% end %>
+          <%= render RS::Modal::Component.new do |modal| %>
+            <% modal.with_body do %>
+              <%= turbo_frame_tag "modal" %>
+            <% end %>
+          <% end %>
+        </div>
+      </main>
+    <% else %>
+      <%= render partial: 'layouts/messages' %>
+      <%= yield %>
+    <% end %>
+  </body>
+</html>

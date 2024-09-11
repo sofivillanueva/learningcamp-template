@@ -1,0 +1,33 @@
+<div class="bg-primary-600 px-4 py-6 sm:px-6">
+  <div class="flex items-center justify-between">
+    <h2 class="text-base font-semibold leading-6 text-white" id="slide-over-title"><%= I18n.t('views.users.show_user') %></h2>
+    <div class="flex items-center">
+      <%= render RS::Link::Component.new(url: users_path, target: '_top') do %>
+        <span class="relative rounded-md text-white hover:text-neutral-200 focus:outline-none focus:ring-2 focus:ring-white">
+          <span class="absolute -inset-2.5"></span>
+          <span class="sr-only">Close</span>
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </span>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% present(@user) do |user_presenter| %>
+  <%= rs_form_with model: @user, remote: true, class: "flex h-full flex-col divide-y divide-neutral-200 bg-white shadow-xl", html: { readonly: true } do |f| %>
+    <div class="h-0 flex-1 overflow-y-auto">
+      <div class="flex gap-4 m-4">
+        <%= f.field :first_name, label: t('views.users.first_name'), as: :text, disabled: true %>
+        <%= f.field :last_name, label: t('views.users.last_name'), as: :text, disabled: true %>
+      </div>
+      <div class="m-4" >
+        <%= f.field :email, label: t('views.users.email'), required: true, as: :email, disabled: true %>
+      </div>
+       <div class="m-4">
+        <%= f.field :preferences_enabled, label: t('views.users.preferences_enabled'), as: :text, disabled: true %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,164 @@
+---
+en:
+  active_admin:
+    dashboard: Main page
+    dashboard_welcome:
+      call_to_action: Actions
+      welcome: Welcome to your first admin
+  api:
+    errors:
+      invalid_content_type: Invalid content type header
+      invalid_message_length: Please input a valid message
+      missing_param: A required param is missing
+      not_found: Couldn't find the record
+  components:
+    rs:
+      attachment:
+        description_text: Upload a file
+        file_conditions: "%{supported_extensions} up to %{size_mb}MB"
+      list:
+        header:
+          actions: Actions
+        pagination:
+          next: Next
+          previous: Previous
+          showing:
+            of: of
+            results: results
+            showing: Showing
+            to: to
+        row:
+          edit: Edit
+          remove: Remove
+      sidebar:
+        close: Close sidebar
+        logo:
+          alt: Your Company
+        open: Open sidebar
+      topbar:
+        profile: Your profile
+        search: Search
+        signout: Sign out
+        user_menu:
+          open: Open user menu
+  controllers:
+    application:
+      unauthorized: Unauthorized
+  devise:
+    invitations:
+      edit:
+        header: Set your password
+        password: Password
+        password_confirmation: Password Confirmation
+        submit_button: Set my password
+    mailer:
+      invitation_instructions:
+        accept: Accept invitation
+        accept_until: This invitation will be due in %{due_date}.
+        hello: Hello %{email}
+        ignore: If you don't want to accept the invitation, please ignore this email. Your account won't be created until you access the link above and set your password.
+        someone_invited_you: Someone has invited you to %{url}, you can accept it through the link below.
+      reset_password_instructions:
+        ignore_mail_msg: If you didn't request this, please ignore this email.
+        no_changes_msg: Your password won't change until you access the link above and create a new one.
+        password_change_link: Change my password
+        request_reset_link_msg: Someone has requested a link to change your password. You can do this through the link below.
+    passwords:
+      edit:
+        back_login: Back to Login
+        new_password: Password
+        password_msg: Enter a new password for your account
+        reset_password: Reset Password
+        reset_your_password: Reset your password
+      new:
+        back_login: Back to Login
+        email_address: Email address
+        password_msg: Enter your email and we'll send you a link to reset your password.
+        reset_your_password: Reset your password
+        send_email: Send link to email
+    sessions:
+      new:
+        email_address: Email address
+        forgot_password: Forgot your password?
+        password: Password
+        remember_me: Remember me
+        sign_in: Sign in to your account
+        sign_in_button: Log in
+  hello: Hello
+  home:
+    title: rails_enterprise
+  layouts:
+    application:
+      dashboard: Dashboard
+      preferences: Preferences
+      recipes: Recipes
+      users: Users
+  views:
+    preferences:
+      cancel: Cancel
+      close_panel: Close panel
+      columns:
+      - Name
+      - Description
+      - Restriction
+      create_preference: Create Preference
+      description: Description
+      edit:
+        description: ''
+        title: Edit Preference
+      limit_reached_message: You cannot add more preferences. The limit of %{max} preferences has been reached.
+      name: Name
+      new:
+        description: Get started by filling in the information below to create your new preference.
+        title: New Preference
+      new_preference: New Preference
+      restriction: Restriction
+      show:
+        title: A list of all the preferences in your account including their name, description and if it is a restriction.
+      show_preference: Show Preference
+      title: Preferences
+      update_preference: Update Preference
+    recipes:
+      cancel: Cancel
+      close_panel: Close
+      columns:
+      - Name
+      - Ingredients
+      create_recipe: Create Recipe
+      description: Here you will find all your recipes
+      ingredients: Ingredients
+      name: Name
+      new:
+        description: Enter the ingredients for the new recipe
+        title: New Recipe
+      new_recipe: New Recipe
+      show_recipe: Recipe
+      title: Recipes
+    users:
+      cancel: Cancel
+      close_panel: Close panel
+      columns:
+      - Name
+      - Email
+      create_success: User successfully created.
+      create_user: Create User
+      delete_confirmation: Are you sure you want to delete this user?
+      destroy_failure: Failed to remove the user.
+      destroy_success: User successfully removed.
+      edit:
+        description: ''
+        title: Edit User
+      email: Email
+      first_name: Name
+      last_name: Last Name
+      new:
+        description: Get started by filling in the information below to create your new user.
+        title: New User
+      new_user: New User
+      preferences_enabled: Preferences Enabled
+      show:
+        title: A list of all the users in your account including their name, title, email and role.
+      show_user: Show User
+      title: Users
+      update_success: User successfully updated.
+      update_user: Update User

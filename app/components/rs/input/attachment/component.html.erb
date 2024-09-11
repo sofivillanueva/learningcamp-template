@@ -1,0 +1,12 @@
+<div data-controller="rs--input--attachment--component" data-rs--input--attachment--component-size-value="<%= @size_mb %>" class="mt-2 flex justify-center rounded-lg border border-dashed border-primary-900/25 px-6 py-10">
+  <div class="text-center">
+    <%= inline_svg_tag('icons/attachment.svg') %>
+    <div class="mt-4 flex text-sm leading-6 text-neutral-600 justify-center">
+      <label for="<%= @id %>" class="relative cursor-pointer rounded-md bg-white font-semibold text-primary-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-primary-600 focus-within:ring-offset-2 hover:text-primary-500">
+        <span><%= t("components.rs.attachment.description_text") %></span>
+        <input id="<%= @id %>" name="<%= @name %>" type="file" data-direct-upload-url="<%= rails_direct_uploads_url %>" accept="<%= supported_file_types %>" data-action="input->rs--input--attachment--component#sizeValidation" data-rs--input--attachment--component-target="input">
+      </label>
+    </div>
+    <p class="text-xs leading-5 text-neutral-600"><%= t("components.rs.attachment.file_conditions", supported_extensions: supported_file_types_extension, size_mb: @size_mb) %></p>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<%= render ::RS::List::Component.new do |component| %>
+  <%= component.with_info(
+    title: t('views.recipes.title'),
+    description: t('views.recipes.description'),
+    url: new_recipe_path,
+    text: t('views.recipes.new_recipe'),
+    target: 'panel'
+  ) %>
+
+  <%= component.with_header(column_names: t('views.recipes.columns')) %>
+
+  <% @recipes.all.each do |recipe| %>
+    <%= component.with_row(
+      row_values: [
+        { value: recipe.name, image: true, image_src: '' },
+                { value: recipe.ingredients }
+              ],
+              actions: [
+                { name: 'show', url: recipe_path(recipe), target: 'panel' },
+                { name: 'remove', url: recipe_path(recipe), method: :delete }
+              ]
+    ) %>
+  <% end %>
+<% end %>

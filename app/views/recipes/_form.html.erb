@@ -1,0 +1,20 @@
+<%= rs_form_with model: recipe, remote: true, class: "flex h-full flex-col divide-y divide-neutral-200 bg-white shadow-xl" do |f| %>
+  <div class="h-0 flex-1 overflow-y-auto">
+    <div class="m-4">
+      <%= f.field :ingredients, label: t('views.recipes.ingredients'), required: true, as: :text %>
+    </div>
+    <div class="flex flex-shrink-0 justify-end px-4 py-4 gap-4 items-center">
+      <div>
+        <%= render RS::LinkButton::Component.new(url: recipes_path, text: t('views.recipes.cancel'), variant: :outline, target: '_top') %>
+      </div>
+      <div class="peer relative">
+        <input type="checkbox" onchange="this.form.submit()" class="absolute top-0 inset-x-0 w-full h-full opacity-0 z-10 cursor-pointer" checked>
+        <%= f.submit text: submit_button_text %>
+      </div>
+      <div class="peer-has-[:checked]:hidden">
+        <%= inline_svg_tag('icons/spin.svg', class: "animate-spin h-5 w-5 mr-3") %>
+        Thinking...
+      </div>
+    </div>
+  </div>
+<% end %>
