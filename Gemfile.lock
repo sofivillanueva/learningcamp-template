@@ -626,6 +626,7 @@ GEM
       method_source (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
+    wdm (0.2.0)
     webmock (3.23.1)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
@@ -719,6 +720,7 @@ DEPENDENCIES
   turbo-rails (= 2.0.6)
   tzinfo-data
   view_component (~> 3.13.0)
+  wdm (>= 0.1.0)
   webmock (~> 3.23)
   yaaf (~> 3.0.0)
 
