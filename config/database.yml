@@ -10,10 +10,14 @@ default: &default
 development:
   <<: *default
   database: rails_learning_camp_development
+  host: localhost
+  port: 5432
 
 test:
   <<: *default
   database: rails_learning_camp_test<%= ENV['TEST_ENV_NUMBER'] %>
+  host: localhost
+  port: 5432
 
 # For production is recommended to set DATABASE_URL env variable.
 # It will take precedence over the config defined here.
