@@ -10,6 +10,8 @@
 1. `rails assets:precompile` to precompile assets
 1. Run `bin/dev`.
 1. You can now try your REST services!
+1. Nuevo cambio - Sofi
+
 
 ## Dev scripts
 
