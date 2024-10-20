@@ -8,6 +8,11 @@
 #  restriction :boolean
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  user_id     :bigint           not null
+#
+# Indexes
+#
+#  index_preferences_on_user_id  (user_id)
 #
 
 # 1. generar migracion(create_preferences) y modelo(PreferencesController): rails generate model Preference name:string description:text restriction:boolean

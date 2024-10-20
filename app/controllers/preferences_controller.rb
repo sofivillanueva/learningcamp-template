@@ -33,6 +33,8 @@ class PreferencesController < ApplicationController
 
     end
 
+  
+
 #    def create # recibe los datos del form
  #       @preference = current_user.preferences.build(preference_params) # creamos una nueva preferencia asociada al usuario actual, ver como sabe que tiene que usar la variable current_user y que hace el build? de que es ese metodo?
   #      
