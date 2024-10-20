@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: preferences
+#
+#  id          :bigint           not null, primary key
+#  name        :string
+#  description :text
+#  restriction :boolean
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
 require 'rails_helper'
 
 RSpec.describe Preference, type: :model do
