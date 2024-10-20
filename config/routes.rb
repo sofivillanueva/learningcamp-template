@@ -47,6 +47,10 @@ Rails.application.routes.draw do
     end
   end
 
+  #resources :preferences, only: [:new, :create] # esto genera automáticamente SOLO las rutas RESTful de new y create para Preferences
+  resources :preferences # esto genera automáticamente las rutas RESTful para Preferences
+
+
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
   mount Lookbook::Engine, at: '/lookbook' if Rails.env.development?
