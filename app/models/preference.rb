@@ -17,7 +17,7 @@
 
 # 1. generar migracion(create_preferences) y modelo(PreferencesController): rails generate model Preference name:string description:text restriction:boolean
 # 2. rails db:migrate: genera la tabla preferences
-# 3. agregamos en el modelo las restricciones (nombre obligatorio, valores nullos) y las relaciones en caso de que las haya. 
+# 3. agregamos en el modelo las restricciones (nombre obligatorio, valores nulos) y las relaciones en caso de que las haya. 
 
 # Active Record - Conceptos Básicos:
 # Es el ORM (Object-Relational Mapping) de Rails

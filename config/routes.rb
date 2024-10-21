@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  resources :preferences, only: %i[index]
+  #resources :preferences, only: %i[index]
+  #resources :preferences, only: [:new, :create] # esto genera automáticamente SOLO las rutas RESTful de new y create para Preferences
+  resources :preferences # esto genera automáticamente las rutas RESTful para Preferences
   resources :recipes, only: %i[index]
 
   namespace :api do
@@ -47,8 +49,7 @@ Rails.application.routes.draw do
     end
   end
 
-  #resources :preferences, only: [:new, :create] # esto genera automáticamente SOLO las rutas RESTful de new y create para Preferences
-  resources :preferences # esto genera automáticamente las rutas RESTful para Preferences
+  
 
 
   mount Rswag::Ui::Engine => '/api-docs'

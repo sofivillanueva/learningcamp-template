@@ -1,15 +1,2 @@
-<% if @preference.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@preference.errors.count, "error") %> prohibió que esta preferencia se guardara:</h2>
-
-    <ul>
-      <% @preference.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
-
 <%= render 'header', title: I18n.t('views.preferences.new.title'), close_panel_text: t('views.preferences.close_panel'), description: I18n.t('views.preferences.new.description') %>
 <%= render 'form', preference: @preference, submit_button_text: t('views.preferences.create_preference') %>
