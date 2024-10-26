@@ -42,6 +42,7 @@ gem 'turbo-rails', '2.0.6'
 gem 'view_component', '~> 3.13.0'
 gem 'yaaf', '~> 3.0.0'
 
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
