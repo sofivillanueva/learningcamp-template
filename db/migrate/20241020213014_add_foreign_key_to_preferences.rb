@@ -3,4 +3,3 @@ class AddForeignKeyToPreferences < ActiveRecord::Migration[7.1]
     add_foreign_key :preferences, :users, validate: false
   end
 end
-ValidateAddForeignKeyToPreferences

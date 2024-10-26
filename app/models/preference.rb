@@ -34,7 +34,15 @@ class Preference < ApplicationRecord
     # validaciones
     validates :name, presence: true # no puede ser nulo
     validates :description, presence: true # no puede ser nulo
-    validates :restriction, inclusion: { in: [true, false] } # la restriccion toma valores de true o false 
+    validates :restriction, inclusion: [true, false] # la restriccion toma valores de true o false 
+
+    before_validation :set_default_restriction #antes de la validacion va al metodo set_default_restriction
+
+    private
+
+    def set_default_restriction # si el parametro restriction llega nil(null) lo setea a false, ya que esto significa que el usuario no lo seleccionó
+    self.restriction = false if restriction.nil?
+    end
     # relaciones
     belongs_to :user # 1 preferencia pertenece a 1 usuario
 end
