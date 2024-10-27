@@ -17,7 +17,7 @@ Knapsack::Adapters::RSpecAdapter.bind
 FactoryBot.factories.clear
 FactoryBot.reload
 
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }
+Rails.root.glob('spec/support/**/*.rb').each { |file| require file }
 
 Capybara.register_driver :chrome do |app|
   args = %w[no-sandbox disable-gpu disable-dev-shm-usage]

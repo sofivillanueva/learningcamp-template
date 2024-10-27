@@ -162,3 +162,11 @@ en:
       title: Users
       update_success: User successfully updated.
       update_user: Update User
+  preferences:
+    create:
+      success: 'Preferencia creada con éxito'
+    update:
+      success: 'La preferencia ha sido editada exitosamente'
+    destroy:
+      success: 'La preferencia ha sido eliminada exitosamente'
+      error: 'La preferencia no pudo ser eliminada'
