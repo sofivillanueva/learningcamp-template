@@ -40,6 +40,7 @@ gem 'stimulus-rails', '~> 1.3'
 gem 'strong_migrations', '~> 2.0'
 gem 'turbo-rails', '2.0.6'
 gem 'view_component', '~> 3.13.0'
+gem 'wdm', '>= 0.1.0', require: false if Gem.win_platform? # no se si va, daba un error de esta gema
 gem 'yaaf', '~> 3.0.0'
 
 
@@ -99,5 +100,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-gem 'wdm', '>= 0.1.0', require: false if Gem.win_platform? # no se si va, daba un error de esta gema

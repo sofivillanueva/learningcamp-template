@@ -67,7 +67,6 @@ class PreferencesController < ApplicationController
       redirect_to preference_path, alert: t('.error')
     end
   end
-  # private #
 
   private
 
