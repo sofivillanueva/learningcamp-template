@@ -40,7 +40,6 @@ gem 'stimulus-rails', '~> 1.3'
 gem 'strong_migrations', '~> 2.0'
 gem 'turbo-rails', '2.0.6'
 gem 'view_component', '~> 3.13.0'
-gem 'wdm', '>= 0.1.0', require: false if Gem.win_platform? # no se si va, daba un error de esta gema
 gem 'yaaf', '~> 3.0.0'
 
 
@@ -79,6 +78,7 @@ group :development do
   gem 'rubocop-rake', '~> 0.6.0', require: false
   gem 'rubocop-rspec', '~> 3.0.3', require: false
   gem 'rubocop-rspec_rails', '~> 2.30.0', require: false
+  gem 'wdm', '>= 0.1.0', platforms: [:mingw, :mswin, :x64_mingw]
 end
 
 group :test do
