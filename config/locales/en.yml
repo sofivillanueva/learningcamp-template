@@ -165,6 +165,7 @@ en:
   preferences:
     create:
       success: 'Preferencia creada con éxito'
+      error: 'Ya ha alcanzado la máxima cantidad de preferencias (5).'
     update:
       success: 'La preferencia ha sido editada exitosamente'
     destroy:
