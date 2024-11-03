@@ -23,8 +23,10 @@ class RecipesController < ApplicationController
     # le paso los ingredientes del formulario
     @recipe = RecipeGeneratorService.new(recipe_params[:ingredients], current_user.id).call
 
-    if @recipe.save # Intenta guardar la receta
-      render :show, notice: t('.success')
+    if @recipe.name == 'Error'
+      redirect_to recipes_path, alert: t('.error_con_preferencias')
+    elsif @recipe.save
+      render :show, notice: t('.success') # Intenta guardar la receta
     else
       render :new, status: :unprocessable_entity
     end

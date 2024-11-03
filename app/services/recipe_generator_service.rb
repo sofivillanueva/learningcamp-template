@@ -41,19 +41,55 @@ class RecipeGeneratorService
   end
 
   def prompt
+    preferences_text = if @user.preferences.exists?
+                         # al array de preferencias de cada usuario lo paso a un tipo string con este formato:
+                         # "- dieta: vegetariana
+                         #  - pref2: descripcion2"
+                         restrictions = @user.preferences # restricciones obligatorias, como de dieta
+                                             .where(restriction: true)
+                                             .map { |pref| "- #{pref.name}: #{pref.description}" }
+                                             .join("\n")
+                         other_preferences = @user.preferences # preferencias comunes
+                                                  .where(restriction: false)
+                                                  .map { |pref| "- #{pref.name}: #{pref.description}" }
+                                                  .join("\n")
+                         <<~PREFERENCES
+                           STRICT DIETARY RESTRICTIONS (NEVER VIOLATE THESE):
+                           #{restrictions}
+
+                           OTHER PREFERENCES (CONSIDER WHEN POSSIBLE):
+                           #{other_preferences}
+                         PREFERENCES
+                       else
+                         'NO PREFERENCES - You can use any ingredients'
+                       end
     <<~CONTENT
-      You are a recipe generator. Using the ingredients provided and others that you may need, and taking into account (strictly) the user preferences (#{@user_preference}), generate a recipe in JSON format. The response should contain only the following JSON structure:
+        You are a recipe generator with the following STRICT REQUIREMENTS:
 
-      {
-        "name": "name_of_the_dish",
-        "content": "each_step"
-      }
+        1. USER DIETARY REQUIREMENTS AND PREFERENCES:
+        #{preferences_text}
 
-      IMPORTANT:
-      The entire response is valid JSON without any escape characters.
-      The recipe content follows a step-by-step numbered format, each step prefixed with a number.
-      Add a line break after each step.
-      Always traslate the response to the language of the ingredients provided (mostly Spanish, could be English).
+        2. RECIPE RULES:
+        - You MUST NOT include any ingredients that conflict with the user preferences
+        - Generate a recipe in JSON format. The response should contain only the following JSON structure:
+
+        {
+          "name": "name_of_the_dish",
+          "content": "each_step"
+        }
+
+        3. INSTRUCTIONS:
+      - If the user preferences make it **impossible** to create a valid recipe, return exactly this JSON (do not create a recipe):
+        {
+          "name": "Error",
+          "content": "Error"
+        }
+
+        4. MAKE SURE THAT:
+          The entire response is valid JSON without any escape characters.
+          The recipe content follows a step-by-step numbered format, each step prefixed with a number.
+          Add a line break after each step.
+          Always traslate the response to the language of the ingredients provided (mostly Spanish, could be English).
     CONTENT
   end
 
