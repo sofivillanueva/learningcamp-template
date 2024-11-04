@@ -101,6 +101,12 @@ en:
       success: La preferencia ha sido eliminada exitosamente
     update:
       success: La preferencia ha sido editada exitosamente
+  recipes:
+    create:
+      success: Receta creada con éxito
+    destroy:
+      error: La receta no pudo ser eliminada
+      success: La receta ha sido eliminada exitosamente
   views:
     preferences:
       cancel: Cancel

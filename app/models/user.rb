@@ -51,7 +51,7 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   has_many :preferences, dependent: :destroy # 1 usuario tiene muchas preferencias
-  # has_many :recipes VER SI VA
+  has_many :recipes, dependent: :destroy
 
   validates :uid, uniqueness: { scope: :provider }
   validates :email, uniqueness: true, on: :update

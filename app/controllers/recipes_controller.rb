@@ -2,6 +2,50 @@
 
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.all
+    @recipes = current_user.recipes
+
+    @pagy, @records = pagy(@recipes)
+  end
+
+  # para F8. View Recipe Details
+  def show
+    @recipe = Recipe.find(params[:id])
+  end
+
+  # F5. Create Recipe
+  def new
+    @recipe = Recipe.new
+  end
+
+  # F5. Create Recipe
+  def create
+    # Llamo al servicio que genera la receta utilizando IA y
+    # le paso los ingredientes del formulario
+    @recipe = RecipeGeneratorService.new(recipe_params[:ingredients], current_user.id).call
+
+    if @recipe.save # Intenta guardar la receta
+      render :show, notice: t('.success')
+    else
+      render :new, status: :unprocessable_entity
+    end
+  rescue RecipeGeneratorServiceError => exception
+    flash[:alert] = exception.message
+    redirect_back(fallback_location: recipes_path)
+  end
+
+  # R9 Delete Recipe
+  def destroy
+    @old_recipe = Recipe.find(params[:id])
+    if @old_recipe.destroy!
+      redirect_to recipes_path, notice: t('.success')
+    else
+      redirect_to recipes_path, alert: t('.error')
+    end
+  end
+
+  private
+
+  def recipe_params
+    params.require(:recipe).permit(:name, :description, :ingredients)
   end
 end

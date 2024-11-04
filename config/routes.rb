@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   # resources :preferences, only: [:new, :create]
   # esto genera automáticamente SOLO las rutas RESTful de new y create para Preferences
   resources :preferences # esto genera automáticamente las rutas RESTful para Preferences
-  resources :recipes, only: %i[index]
+  resources :recipes, except: %i[edit update]
 
   namespace :api do
     namespace :v1, defaults: { format: :json } do
