@@ -105,6 +105,7 @@ en:
       error: Ya ha alcanzado la máxima cantidad de preferencias (5).
   recipes:
     create:
+      error_con_preferencias: No se pudo generar una receta con los ingredientes ingresados dado las preferencias del usuario
       success: Receta creada con éxito
     destroy:
       error: La receta no pudo ser eliminada
