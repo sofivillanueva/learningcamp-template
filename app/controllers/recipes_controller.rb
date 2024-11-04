@@ -28,8 +28,8 @@ class RecipesController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  rescue RecipeGeneratorServiceError => e
-    flash[:alert] = e.message
+  rescue RecipeGeneratorServiceError => exception
+    flash[:alert] = exception.message
     redirect_back(fallback_location: recipes_path)
   end
 
