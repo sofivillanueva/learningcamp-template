@@ -101,6 +101,8 @@ en:
       success: La preferencia ha sido eliminada exitosamente
     update:
       success: La preferencia ha sido editada exitosamente
+    validate_preferences_limit:
+      error: Ya ha alcanzado la máxima cantidad de preferencias (5).
   recipes:
     create:
       success: Receta creada con éxito
@@ -176,20 +178,3 @@ en:
       title: Users
       update_success: User successfully updated.
       update_user: Update User
-  preferences:
-    create:
-      success: 'Preferencia creada con éxito'
-      error: 'Ya ha alcanzado la máxima cantidad de preferencias (5).'
-    update:
-      success: 'La preferencia ha sido editada exitosamente'
-    destroy:
-      success: 'La preferencia ha sido eliminada exitosamente'
-      error: 'La preferencia no pudo ser eliminada'
-  recipes:
-    create:
-      success: 'Receta creada con éxito'
-    show:
-      success: 'Receta creada con éxito'
-    destroy:
-      success: 'La receta ha sido eliminada exitosamente'
-      error: 'La receta no pudo ser eliminada'
