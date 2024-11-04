@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: preferences
@@ -5,7 +7,7 @@
 #  id          :bigint           not null, primary key
 #  name        :string
 #  description :text
-#  restriction :boolean
+#  restriction :boolean          default(FALSE), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  user_id     :bigint           not null
@@ -16,8 +18,8 @@
 #
 FactoryBot.define do
   factory :preference do
-    name { "MyString" }
-    description { "MyText" }
+    name { 'MyString' }
+    description { 'MyText' }
     restriction { false }
   end
 end

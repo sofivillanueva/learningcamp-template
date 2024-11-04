@@ -77,6 +77,7 @@ group :development do
   gem 'rubocop-rake', '~> 0.6.0', require: false
   gem 'rubocop-rspec', '~> 3.0.3', require: false
   gem 'rubocop-rspec_rails', '~> 2.30.0', require: false
+  gem 'wdm', '>= 0.1.0', platforms: %i[mingw mswin x64_mingw]
 end
 
 group :test do
@@ -98,5 +99,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-gem 'wdm', '>= 0.1.0', :require => false if Gem.win_platform? #no se si va, daba un error de esta gema

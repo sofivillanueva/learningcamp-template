@@ -46,12 +46,12 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  has_many :preferences # 1 usuario tiene muchas preferencias
-  # has_many :recipes VER SI VA
-
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
+
+  has_many :preferences, dependent: :destroy # 1 usuario tiene muchas preferencias
+  # has_many :recipes VER SI VA
 
   validates :uid, uniqueness: { scope: :provider }
   validates :email, uniqueness: true, on: :update
