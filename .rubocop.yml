@@ -191,3 +191,7 @@ RSpec/LetSetup:
 
 FactoryBot/ExcessiveCreateList:
   Enabled: false
+
+Rails/NotNullColumn:
+  Exclude:
+    - db/migrate/20241020212811_add_user_id_to_preferences.rb

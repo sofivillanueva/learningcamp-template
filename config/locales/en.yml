@@ -93,6 +93,14 @@ en:
       preferences: Preferences
       recipes: Recipes
       users: Users
+  preferences:
+    create:
+      success: Preferencia creada con éxito
+    destroy:
+      error: La preferencia no pudo ser eliminada
+      success: La preferencia ha sido eliminada exitosamente
+    update:
+      success: La preferencia ha sido editada exitosamente
   views:
     preferences:
       cancel: Cancel

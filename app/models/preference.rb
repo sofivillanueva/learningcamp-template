@@ -7,7 +7,7 @@
 #  id          :bigint           not null, primary key
 #  name        :string
 #  description :text
-#  restriction :boolean
+#  restriction :boolean          default(FALSE), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  user_id     :bigint           not null
@@ -40,16 +40,6 @@ class Preference < ApplicationRecord
   # validaciones
   validates :name, presence: true # no puede ser nulo
   validates :description, presence: true # no puede ser nulo
-  validates :restriction, inclusion: [true, false] # la restriccion toma valores de true o false
-
-  before_validation :set_default_restriction # antes de la validacion va al metodo set_default_restriction
-
-  private
-
-  # si el parametro restriction llega nil(null) lo setea a false, ya que esto significa que el usuario no lo seleccionó
-  def set_default_restriction
-    self.restriction = false if restriction.nil?
-  end
   # relaciones
   belongs_to :user # 1 preferencia pertenece a 1 usuario
 end
