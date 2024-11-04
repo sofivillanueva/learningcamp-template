@@ -101,6 +101,8 @@ en:
       success: La preferencia ha sido eliminada exitosamente
     update:
       success: La preferencia ha sido editada exitosamente
+    validate_preferences_limit:
+      error: Ya ha alcanzado la máxima cantidad de preferencias (5).
   recipes:
     create:
       success: Receta creada con éxito

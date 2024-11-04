@@ -34,13 +34,16 @@ class PreferencesController < ApplicationController
     @preference = current_user.preferences.new(preference_params)
     # creamos una nueva preferencia asociada al usuario actual
 
+    # Guard clause: si validate_preferences_limit retorna false, el método se detiene - sugerencia de rubocop
+    return unless validate_preferences_limit
+
     if @preference.save # intenta guardar la preferencia
-      redirect_to preference_path(@preference), notice: t('.success') # se utiliza el redirect_to para cambiar de vista
+      redirect_to preference_path(@preference), notice: t('.success')
+      # se utiliza el redirect_to para cambiar de vista
     else
       # renderiza el formulario de creación nuevamente
       #  mantiene los datos ingresados y muestra los errores
       render :new, status: :unprocessable_entity
-
     end
   end
 
@@ -74,5 +77,13 @@ class PreferencesController < ApplicationController
   # esta es la forma de poder acceder a los parametros de un form en Ruby
   def preference_params
     params.require(:preference).permit(:name, :description, :restriction)
+  end
+
+  def validate_preferences_limit
+    if current_user.preferences.count == 5
+      redirect_to preferences_path, alert: t('.error')
+      return false
+    end
+    true
   end
 end
