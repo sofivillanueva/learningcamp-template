@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   # resources :preferences, only: [:new, :create]
   # esto genera automáticamente SOLO las rutas RESTful de new y create para Preferences
   resources :preferences # esto genera automáticamente las rutas RESTful para Preferences
-  resources :recipes # resources :recipes, only: %i[index], modifico para que no sea solo el index
+  resources :recipes, except: %i[edit update]
 
   namespace :api do
     namespace :v1, defaults: { format: :json } do
@@ -49,9 +49,6 @@ Rails.application.routes.draw do
       mount Flipper::UI.app(Flipper) => '/feature-flags'
     end
   end
-
-
-
 
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
