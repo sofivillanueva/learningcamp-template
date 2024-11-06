@@ -64,7 +64,7 @@ class RecipeGeneratorService
                          'NO PREFERENCES - You can use any ingredients'
                        end
     <<~CONTENT
-        You are a recipe generator with the following STRICT REQUIREMENTS:
+        You are a recipe generator with the following REQUIREMENTS:
 
         1. USER DIETARY REQUIREMENTS AND PREFERENCES:
         #{preferences_text}
@@ -79,11 +79,7 @@ class RecipeGeneratorService
         }
 
         3. INSTRUCTIONS:
-      - If the user preferences make it **impossible** to create a valid recipe, return exactly this JSON (do not create a recipe):
-        {
-          "name": "Error",
-          "content": "Error"
-        }
+      - If the user preferences make it **impossible** to create a valid recipe, create a recipe with alternative ingredients.
 
         4. MAKE SURE THAT:
           The entire response is valid JSON without any escape characters.
