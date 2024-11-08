@@ -79,7 +79,7 @@ class PreferencesController < ApplicationController
     params.require(:preference).permit(:name, :description, :restriction)
   end
 
-  def validate_preferences_limit
+  def validate_preferences_limit # a modificar, es logica de negocio, debe estar en el modelo de usuario, settear que el length de su lista de preferencias debe ser menor o = a 5. entonces que antes de agregar la pref al usuario, verifique esto
     if current_user.preferences.count == 5
       redirect_to preferences_path, alert: t('.error')
       return false
