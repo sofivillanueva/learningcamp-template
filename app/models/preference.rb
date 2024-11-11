@@ -36,7 +36,7 @@
 
 # TASK: Ensure that the name, description, and restriction attributes are correctly handled in the preferences table.
 class Preference < ApplicationRecord
-  MAX_PREFERENCES = 5 
+  MAX_PREFERENCES = 5
   # validaciones
   validates :name, presence: true # no puede ser nulo
   validates :description, presence: true # no puede ser nulo
