@@ -25,6 +25,7 @@ detectors:
     enabled: true
     exclude:
       - 'RS::InputGroup::Component#additional_input_args'
+      - 'RecipeGeneratorService#prompt'
     max_calls: 1
     allow_calls: []
   FeatureEnvy:

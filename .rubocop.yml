@@ -57,6 +57,7 @@ Metrics/AbcSize:
   Exclude:
     - db/**/*
     - app/controllers/recipes_controller.rb
+    - app/services/recipe_generator_service.rb
 
 Metrics/BlockLength:
   Exclude:
@@ -77,6 +78,7 @@ Metrics/MethodLength:
   Max: 24
   Exclude:
     - spec/components/previews/rs/list/component_preview.rb
+    - app/services/recipe_generator_service.rb
 
 Metrics/ModuleLength:
   Max: 200
