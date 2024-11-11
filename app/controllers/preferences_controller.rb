@@ -78,6 +78,8 @@ class PreferencesController < ApplicationController
   # manejo de parámetros - método privado para filtrar parámetros permitidos (por seguridad)
   # esta es la forma de poder acceder a los parametros de un form en Ruby
   def preference_params
-    params.require(:preference).permit(:name, :description, :restriction)
+    params.require(:preference).permit(:name, :description, :restriction).tap do |preference_params|
+      preference_params[:restriction] = preference_params.key?(:restriction) ? preference_params[:restriction] : false
+    end
   end
 end
