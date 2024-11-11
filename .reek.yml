@@ -34,6 +34,8 @@ detectors:
       - 'RS::FormBuilder#field'
       - 'RS::List::ComponentPreview#standard'
       - RecipeGeneratorService#preferences
+      - PreferencesController#preference_params
+
   InstanceVariableAssumption:
     enabled: false
   IrresponsibleModule:
