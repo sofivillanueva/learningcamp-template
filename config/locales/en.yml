@@ -96,13 +96,12 @@ en:
   preferences:
     create:
       success: Preferencia creada con éxito
+      errorPref: La preferencia no ha podido ser creada, se ha alcanzado el máximo por usuario (5)
     destroy:
       error: La preferencia no pudo ser eliminada
       success: La preferencia ha sido eliminada exitosamente
     update:
       success: La preferencia ha sido editada exitosamente
-    validate_preferences_limit:
-      error: Ya ha alcanzado la máxima cantidad de preferencias (5).
   recipes:
     create:
       success: Receta creada con éxito

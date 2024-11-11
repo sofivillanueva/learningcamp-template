@@ -31,19 +31,21 @@ class PreferencesController < ApplicationController
   # post
   # recibe los datos del form
   def create
-    @preference = current_user.preferences.new(preference_params)
-    # creamos una nueva preferencia asociada al usuario actual
+    is_valid = ValidatePreferencesPerUser.new(current_user.id).call # si da true, crea la pref
+    if  is_valid == true
+      @preference = current_user.preferences.new(preference_params)
+      # creamos una nueva preferencia asociada al usuario actual
 
-    # Guard clause: si validate_preferences_limit retorna false, el método se detiene - sugerencia de rubocop
-    return unless validate_preferences_limit
-
-    if @preference.save # intenta guardar la preferencia
-      redirect_to preference_path(@preference), notice: t('.success')
-      # se utiliza el redirect_to para cambiar de vista
+      if @preference.save # intenta guardar la preferencia
+        redirect_to preference_path(@preference), notice: t('.success')
+        # se utiliza el redirect_to para cambiar de vista
+      else
+        # renderiza el formulario de creación nuevamente
+        #  mantiene los datos ingresados y muestra los errores
+        render :new, status: :unprocessable_entity
+      end
     else
-      # renderiza el formulario de creación nuevamente
-      #  mantiene los datos ingresados y muestra los errores
-      render :new, status: :unprocessable_entity
+      redirect_to preferences_path, alert: t('.errorPref')
     end
   end
 
@@ -77,13 +79,5 @@ class PreferencesController < ApplicationController
   # esta es la forma de poder acceder a los parametros de un form en Ruby
   def preference_params
     params.require(:preference).permit(:name, :description, :restriction)
-  end
-
-  def validate_preferences_limit # a modificar, es logica de negocio, debe estar en el modelo de usuario, settear que el length de su lista de preferencias debe ser menor o = a 5. entonces que antes de agregar la pref al usuario, verifique esto
-    if current_user.preferences.count == 5
-      redirect_to preferences_path, alert: t('.error')
-      return false
-    end
-    true
   end
 end
