@@ -96,6 +96,7 @@ en:
   preferences:
     create:
       errorPref: La preferencia no ha podido ser creada, se ha alcanzado el máximo por usuario (5)
+      success: Preferencia creada con éxito
     create_preference:
       success: Preferencia creada con éxito
     destroy:
