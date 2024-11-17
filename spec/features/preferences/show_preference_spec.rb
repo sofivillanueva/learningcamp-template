@@ -17,7 +17,6 @@ RSpec.describe 'Show preference', :js do
 
   before do
     sign_in admin_user
-    preference # Crea la preferencia
     visit preferences_path
     show_first_preference
   end
