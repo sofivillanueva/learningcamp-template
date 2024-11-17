@@ -11,7 +11,7 @@ require 'rails_helper'
 
 RSpec.describe 'Show preference', :js do
   let(:admin_user) { create(:user, email: 'admin@test.com', password: '123123123') }
-  let(:preference) do
+  let!(:preference) do
     create(:preference, name: 'Dieta', description: 'Dieta vegetariana', restriction: true, user: admin_user)
   end
 
