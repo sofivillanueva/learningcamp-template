@@ -72,7 +72,7 @@ class PreferencesController < ApplicationController
     @preference = current_user.preferences.new(preference_params)
     # creamos una nueva preferencia asociada al usuario actual
     if @preference.save
-      redirect_to preference_path(@preference), notice: t('.success')
+      redirect_to preference_path(@preference), notice: t('preferences.create_preference.success')
       # se utiliza el redirect_to para cambiar de vista
     else
       # renderiza el formulario de creación nuevamente
